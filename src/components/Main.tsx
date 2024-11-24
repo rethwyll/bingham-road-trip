@@ -61,6 +61,13 @@ const Header = styled.h2`
     margin: 0;
   }
 `;
+const StyledDateTimePicker = styled(DateTimePicker)`
+  color: ${props => props.theme.text};
+  & .MuiInputBase-root {
+    background-color: white;
+    font-size: 1em;
+  }
+`;
 
 // typescript props
 type Props = {
@@ -89,14 +96,16 @@ const Main = ({ chooseDate, className }: Props): ReactElement => (
         Choose a date and time to see what this site looked like while we were
         on our trip!
       </p>
-      <DateTimePicker
+      <StyledDateTimePicker
+        maxDateTime={DateTime.fromISO("2022-08-12T08:00")}
+        minDateTime={DateTime.fromISO("2022-06-27T08:00")}
         defaultValue={DateTime.fromISO("2022-06-27T08:00")}
         onChange={updated => {
           if (!isNull(updated)) {
             chooseDate(updated.toJSDate());
           }
         }}
-        label="Basic date time picker"
+        views={["month", "day", "hours", "minutes"]}
       />
     </Content>
   </Container>

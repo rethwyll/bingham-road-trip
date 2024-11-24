@@ -21,6 +21,9 @@ import sf from "../assets/sf.svg";
 import stlouis from "../assets/stlouis.svg";
 import transparent from "../assets/transparent.gif";
 
+// utils
+import { isDuringTrip } from "../utils/date";
+
 const imageMap: { [key: string]: string } = {
   cedarpoint,
   dc,
@@ -56,9 +59,9 @@ const terrainScroll = keyframes`
   }
 `;
 const Container = styled.footer`
-  @media screen and (min-width: 1200px) {
+  @media (prefers-reduced-motion: no-preference) {
     ${props => {
-      if (props.theme.date !== "2022-05-28") {
+      if (isDuringTrip(props.theme.date)) {
         return css`
           animation: ${scroll} 30s linear infinite;
         `;
@@ -91,9 +94,9 @@ const FgTerrainWrapper = styled.div`
   position: absolute;
   z-index: 3;
 
-  @media screen and (min-width: 1200px) {
+  @media (prefers-reduced-motion: no-preference) {
     ${props => {
-      if (props.theme.date !== "2022-05-28") {
+      if (isDuringTrip(props.theme.date)) {
         return css`
           animation: ${terrainScroll} 10s linear infinite;
           opacity: 1;

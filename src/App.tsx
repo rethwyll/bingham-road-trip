@@ -12,9 +12,6 @@ import Header from "./components/Header";
 import Main from "./components/Main";
 import Stars from "./components/Stars";
 
-// hooks
-import { useInterval } from "./useInterval";
-
 // styled components
 const Sky = styled.div`
   background: ${props =>
@@ -69,10 +66,6 @@ function reducer(state: Theme, action: { type: string; date?: Date }) {
 
 const App = (): ReactElement => {
   const [theme, dispatch] = useReducer(reducer, initialTheme);
-
-  useInterval(() => {
-    dispatch({ type: "update-theme" });
-  }, 60 * 60 * 1000);
 
   const chooseDate = (newDate: Date) =>
     dispatch({ type: "update-theme", date: newDate });
